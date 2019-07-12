@@ -37,5 +37,4 @@ workflows:
   version: 2
   germain_test:
     jobs:
-      - build
       - kubectl
