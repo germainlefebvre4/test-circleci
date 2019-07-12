@@ -22,8 +22,6 @@ jobs:
     resource_class: medium
     environment:
       - PROJECT_NAME: "my-app"
-      - GOOGLE_PROJECT_ID: "${GOOGLE_PROJECT_ID}"
-      - GOOGLE_COMPUTE_ZONE: "${GOOGLE_COMPUTE_ZONE}"
       - GOOGLE_CLUSTER_NAME: "preprod-cooptalis-dataplatform"
     steps:
       - checkout
