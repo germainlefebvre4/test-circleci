@@ -20,26 +20,29 @@ jobs:
     docker:
       - image: debian:stretch
     resource_class: medium
-
     steps:
       - checkout
-
       - run:
           name: Greeting
           command: echo Hello, world.
-
       - run:
           name: Print the Current Time
           command: date
 
   kubectl:
     docker:
-      - image: bitnami/kubectl
+      - image: google/cloud-sdk
     resource_class: medium
+    environment:
+      - PROJECT_NAME: "${GOOGLE_PROJECT_ID}"
+      - GOOGLE_PROJECT_ID: "${GCLOUD_PRIVATE_KEY}"
+      - GOOGLE_COMPUTE_ZONE: "${GOOGLE_COMPUTE_ZONE}"
+      - GOOGLE_CLUSTER_NAME: "preprod-cooptalis-dataplatform"
     steps:
       - run:
           name: kubectl get pods
-          command: kubectl get pods
+          command: |
+            kubectl get pods
 
 workflows:
   version: 2
