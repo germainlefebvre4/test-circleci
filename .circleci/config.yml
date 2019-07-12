@@ -42,7 +42,7 @@ jobs:
           command: kubectl get pods
 
 workflows:
-  version: Z
+  version: 2
   germain_test:
     jobs:
       - build
