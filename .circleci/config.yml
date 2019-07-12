@@ -20,8 +20,6 @@ jobs:
     docker:
       - image: google/cloud-sdk
     resource_class: medium
-    environment:
-      - GOOGLE_CLUSTER_NAME: "preprod-cooptalis-dataplatform"
     steps:
       - checkout
       - run: 
@@ -34,7 +32,6 @@ jobs:
             gcloud --quiet config set project ${GOOGLE_PROJECT_ID}
             gcloud --quiet config set compute/zone ${GOOGLE_COMPUTE_ZONE}
             gcloud --quiet container clusters get-credentials ${GOOGLE_CLUSTER_NAME}
-            #      - setup_remote_docker
       - run:
           name: kubectl get pods
           command: |
@@ -46,6 +43,6 @@ jobs:
 
 workflows:
   version: 2
-  germain_test:
+  gke_deploy:
     jobs:
       - gke-deploy
