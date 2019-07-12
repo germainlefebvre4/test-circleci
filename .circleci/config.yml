@@ -40,3 +40,10 @@ jobs:
       - run:
           name: kubectl get pods
           command: kubectl get pods
+
+workflows:
+  version: Z
+  germain_test:
+    jobs:
+      - build
+      - kubectl
