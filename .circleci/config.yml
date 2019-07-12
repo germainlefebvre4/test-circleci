@@ -16,19 +16,6 @@ commands:
       - gcloud/initialize
 
 jobs:
-  build:
-    docker:
-      - image: debian:stretch
-    resource_class: medium
-    steps:
-      - checkout
-      - run:
-          name: Greeting
-          command: echo Hello, world.
-      - run:
-          name: Print the Current Time
-          command: date
-
   kubectl:
     docker:
       - image: google/cloud-sdk
@@ -39,6 +26,8 @@ jobs:
       - GOOGLE_COMPUTE_ZONE: "${GOOGLE_COMPUTE_ZONE}"
       - GOOGLE_CLUSTER_NAME: "preprod-cooptalis-dataplatform"
     steps:
+      - checkout
+      - setup_remote_docker
       - run:
           name: kubectl get pods
           command: |
