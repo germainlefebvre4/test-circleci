@@ -45,6 +45,10 @@ jobs:
           name: kubectl get pods
           command: |
             kubectl get pods
+      - run:
+          name: kubectl apply
+          command: |
+            kubectl apply -f deployment.yaml
 
 workflows:
   version: 2
