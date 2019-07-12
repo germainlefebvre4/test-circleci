@@ -21,8 +21,8 @@ jobs:
       - image: google/cloud-sdk
     resource_class: medium
     environment:
-      - PROJECT_NAME: "${GOOGLE_PROJECT_ID}"
-      - GOOGLE_PROJECT_ID: "${GCLOUD_PRIVATE_KEY}"
+      - PROJECT_NAME: "my-app"
+      - GOOGLE_PROJECT_ID: "${GOOGLE_PROJECT_ID}"
       - GOOGLE_COMPUTE_ZONE: "${GOOGLE_COMPUTE_ZONE}"
       - GOOGLE_CLUSTER_NAME: "preprod-cooptalis-dataplatform"
     steps:
