@@ -21,7 +21,6 @@ jobs:
       - image: google/cloud-sdk
     resource_class: medium
     environment:
-      - PROJECT_NAME: "my-app"
       - GOOGLE_CLUSTER_NAME: "preprod-cooptalis-dataplatform"
     steps:
       - checkout
@@ -30,15 +29,10 @@ jobs:
           command: |
             pwd
             apt-get install -qq -y gettext
-            echo "gcloud key"
             echo ${GCLOUD_SERVICE_KEY} > key.json
-            echo "gcloud auth"
             gcloud auth activate-service-account --key-file=key.json
-            echo "gcloud config project"
             gcloud --quiet config set project ${GOOGLE_PROJECT_ID}
-            echo "gcloud config zone"
             gcloud --quiet config set compute/zone ${GOOGLE_COMPUTE_ZONE}
-            echo "gcloud get-creds"
             gcloud --quiet container clusters get-credentials ${GOOGLE_CLUSTER_NAME}
       - setup_remote_docker
       - run:
