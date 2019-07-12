@@ -34,7 +34,7 @@ jobs:
 
   kubectl:
     docker:
-      - image: circleci/kubectl
+      - image: bitnami/kubectl
     resource_class: medium
     steps:
       - run:
