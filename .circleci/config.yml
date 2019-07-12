@@ -32,11 +32,16 @@ jobs:
           command: |
             apt-get install -qq -y gettext
             echo "gcloud key"
-            echo ${GCLOUD_SERVICE_KEY} > gcloud-service-key.json
+            echo ${GCLOUD_SERVICE_KEY} > /tmp/key.json
+            ls -l §tmp/key.json
+            cat /tmp/key.json
             echo "gcloud auth"
-            gcloud auth activate-service-account --key-file=gcloud-service-key.json
+            gcloud auth activate-service-account --key-file=/tmp/key.json
+            echo "gcloud config project"
             gcloud --quiet config set project ${GOOGLE_PROJECT_ID}
+            echo "gcloud config zone"
             gcloud --quiet config set compute/zone ${GOOGLE_COMPUTE_ZONE}
+            echo "gcloud get-creds"
             gcloud --quiet container clusters get-credentials ${GOOGLE_CLUSTER_NAME}
       - setup_remote_docker
       - run:
